@@ -1,8 +1,8 @@
 ###
 # Base URL (set this to your Render URL or localhost)
-# Example: https://your-backend.onrender.com
-# @BASE_URL = https://mail-api-zv54.onrender.com
-@BASE_URL = http://localhost:5000
+
+@BASE_URL = https://mail-api-zv54.onrender.com
+# @BASE_URL = http://localhost:5000
 
 ###
 # Health / root check
@@ -19,7 +19,7 @@ Content-Type: application/json
   "name": "Test User",
   "email": "aayush82830@gmail.com",
   "phone": "9999999999",
-  "service": "Testing",
+  "service": "lalit",
   "message": "Just testing."
 }
 

@@ -22,12 +22,16 @@ router.post("/", async (req, res) => {
     const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // important
+  secure: true, 
   auth: {
     user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS, // must be APP PASSWORD (16-digit)
+    pass: process.env.MAIL_PASS, // Gmail App Password only!
   },
+  tls: {
+    rejectUnauthorized: false,
+  }
 });
+
 
     await transporter.sendMail({
       from: `"Websitoz" <${process.env.MAIL_USER}>`,
