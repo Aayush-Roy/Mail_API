@@ -1,0 +1,86 @@
+###
+# Base URL (set this to your Render URL or localhost)
+# Example: https://your-backend.onrender.com
+# @BASE_URL = https://mail-api-zv54.onrender.com
+@BASE_URL = http://localhost:5000
+
+###
+# Health / root check
+GET {{BASE_URL}}/
+Accept: application/json
+
+###
+# POST - create contact (JSON)
+# Use this to test form submission -> saves to MongoDB and triggers Nodemailer
+POST {{BASE_URL}}/api/contact
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "aayush82830@gmail.com",
+  "phone": "9999999999",
+  "service": "Testing",
+  "message": "Just testing."
+}
+
+# {
+#   "name": "Aayush Sharma",
+#   "email": "workwithaayushroy@gmail.com",
+#   "phone": "+919560615790",
+#   "service": "Web Development",
+#   "message": "Hey team — I'd like a quote for a small business website (5 pages)."
+# }
+
+###
+# POST - create contact (example for testing invalid payload)
+POST {{BASE_URL}}/api/contact
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "not-an-email",
+  "phone": "",
+  "service": "",
+  "message": ""
+}
+
+###
+# GET - fetch all contacts (if you add this route on server)
+# (Optional - only if you implemented a GET route)
+GET {{BASE_URL}}/api/contact
+Accept: application/json
+
+###
+# Example: POST using form-url-encoded (if you adapted backend to parse urlencoded)
+# Uncomment if server uses express.urlencoded()
+# Content-Type: application/x-www-form-urlencoded
+# POST {{BASE_URL}}/api/contact
+# Content-Type: application/x-www-form-urlencoded
+#
+# name=Aayush&email=aayush%40example.com&phone=+919560615790&service=SEO&message=Testing+via+urlencoded
+
+###
+# Example: POST multipart/form-data (if you plan to accept file attachments)
+# (VS Code REST Client supports this style)
+# POST {{BASE_URL}}/api/contact/form
+# Content-Type: multipart/form-data
+#
+# name=Aayush
+# email=aayush@example.com
+# phone=+919560615790
+# service=Web Development
+# message=Please+send+a+quote.
+# file=@/absolute/path/to/screenshot.png
+
+###
+# Debug tip: Add a header to override origin (if CORS blocking)
+# Example to simulate request from hostinger domain:
+# You can add this header in any request block to simulate origin
+# Origin: https://www.your-hostinger-site.com
+
+###
+# Quick checklist before using:
+# 1) Start server locally: PORT=5000 node server.js
+# 2) Ensure .env has: MONGO_URL, MAIL_USER, MAIL_PASS
+# 3) If testing email, verify MAIL_USER & MAIL_PASS (Gmail app password) are correct
+# 4) If using Render, set BASE_URL to the Render service URL

@@ -12,13 +12,22 @@ router.post("/", async (req, res) => {
     await Contact.create({ name, email, phone, service, message });
 
     // Send Email to user
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.MAIL_USER,
+    //     pass: process.env.MAIL_PASS,
+    //   },
+    // });
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // important
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS, // must be APP PASSWORD (16-digit)
+  },
+});
 
     await transporter.sendMail({
       from: `"Websitoz" <${process.env.MAIL_USER}>`,
@@ -85,7 +94,7 @@ router.post("/", async (req, res) => {
         </div>
 
         <!-- CTA BUTTON -->
-        <a href="https://websitoz.com"
+        <a href="https://websitoz.in"
           style="
             display:inline-block;
             margin-top:20px;
