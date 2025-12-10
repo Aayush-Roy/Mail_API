@@ -1,8 +1,8 @@
 ###
 # Base URL (set this to your Render URL or localhost)
 
-@BASE_URL = https://mail-api-zv54.onrender.com
-# @BASE_URL = http://localhost:5000
+# @BASE_URL = https://mail-api-zv54.onrender.com
+@BASE_URL = http://localhost:5000
 
 ###
 # Health / root check
